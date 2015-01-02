@@ -72,6 +72,10 @@ impl<'a, N: NetworkAcceptor> Iterator for NetworkConnections<'a, N> {
 pub trait NetworkStream: Stream + Any + StreamClone + Send {
     /// Get the remote address of the underlying connection.
     fn peer_name(&mut self) -> IoResult<SocketAddr>;
+
+    /// During a client request/response, the remote server did not want to keep-alive
+    /// the connection, so the stream cannot be reused for subsequent requests.
+    fn mark_dead(&mut self);
 }
 
 
@@ -303,6 +307,9 @@ impl NetworkStream for HttpStream {
             HttpStream::Http(ref mut inner) => inner.peer_name(),
             HttpStream::Https(ref mut inner) => inner.get_mut().peer_name()
         }
+    }
+
+    fn mark_dead(&mut self) {
     }
 }
 
