@@ -309,8 +309,7 @@ impl NetworkStream for HttpStream {
         }
     }
 
-    fn mark_dead(&mut self) {
-    }
+    fn mark_dead(&mut self) {}
 }
 
 /// A connector that will produce HttpStreams.
