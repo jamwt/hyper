@@ -3,8 +3,7 @@ use std::num::FromPrimitive;
 use std::old_io::{BufferedReader, IoResult};
 
 use header;
-use header::{Connection, ContentLength, TransferEncoding};
-use header::common::connection::{ConnectionOption};
+use header::{Connection, ConnectionOption, ContentLength, TransferEncoding};
 use header::Encoding::Chunked;
 use net::{NetworkStream, HttpStream};
 use http::{read_status_line, HttpReader, RawStatus};
